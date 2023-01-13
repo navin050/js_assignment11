@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 2em;
+        }
+
+        p {
+            color: blue;
+        }
+
+        .ans {
+            color: red;
+        }
+    </style>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <h1>Inheritance and Prototype</h1>
+    <h3>Question 1.</h3>
+    <p>Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents
+        prototype
+    </p>
+    <p class="ans">Solution:-</p>
+    <pre>
+        const parent = {
+            create(){
+               console.log(`My name is ${this.fname} ${this.lname}`)
+            }
+        }
+
+        const child = Object.create(parent)
+        child.fname = "Navin"
+        child.lname = "Sinha"
+        child.create()
+    </pre>
+
+    <h3>Question 2.</h3>
+    <p>Write code to explain prototype chaining
+    </p>
+    <p class="ans">Solution:-</p>
+    <pre>
+        function Student(fname,lname,age){
+            this.fname = fname;
+            this.lname = lname;
+            this.age = age
+        }
+        
+        const student1 = new Student("Navin","Sinha",23)
+        const student2 = new Student("Bikash","Singh",24)
+        
+        console.log(student1);
+        console.log(student2);
+    </pre>
+
+    <h3>Question 3.</h3>
+    <p>Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for
+        multiple arrays
+    </p>
+    <p class="ans">Solution:-</p>
+    <pre>
+        const numbers = [10, 20, 30, 40, 50]; 
+        const numbers1 = [100, 200, 300]; 
+        
+        Array.prototype.total = function () {
+            let sum = 0;
+            for (let i = 0; i < this.length; i++) {
+            sum += this[i];
+            }
+            console.log(sum);
+        };
+        
+        numbers.total(); 
+        numbers1.total();
+    </pre>
+
+    <h3>Question 4.</h3>
+    <p>Write a JavaScript function to retrieve all the names of object's own and inherited properties.
+    </p>
+    <p class="ans">Solution:-</p>
+    <pre>
+        function allKeys(obj) {
+            if (!isObject(obj)) return [];
+            var keys = [];
+            for (var key in obj) keys.push(key);
+            return keys;
+        }
+        function isObject(obj) 
+        {
+            var type = typeof obj;
+            return type === 'function' || type === 'object' && !!obj;
+          }
+        function Student(name) {
+          this.name = name;
+        }
+        Student.prototype.rollno = true;
+        console.log(allKeys(new Student("Sara")));
+    </pre>
+</body>
+
+</html>
